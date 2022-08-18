@@ -2,6 +2,7 @@ using AssemblyTutorial.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -12,6 +13,8 @@ builder.Services.AddHttpClient("AssemblyTutorial.ServerAPI", client => client.Ba
 
 // Supply HttpClient instances that include access tokens when making requests to the server project
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("AssemblyTutorial.ServerAPI"));
+
+builder.Services.AddMudServices();
 
 builder.Services.AddMsalAuthentication(options =>
 {
